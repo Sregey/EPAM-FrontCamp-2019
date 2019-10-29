@@ -1,0 +1,72 @@
+$border-color: gray;
+$image-width: 20%;
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+}
+
+#app {
+    width: 60%;
+    min-height: 100%;
+
+    margin: 0 auto;
+    padding: 0 10px;
+
+    border-color: $border-color;
+    border-style: solid;
+    border-width: 0 1px;
+}
+
+.sources-container {
+    display: flex; 
+    flex-flow: column wrap;
+
+    height: 100vh;
+    overflow-x: scroll;
+
+    .source {
+        padding: 5px 10px;
+    }
+}
+
+.news {
+    padding: 10px;
+
+    .title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .body {
+        display: flex;
+    }
+
+    .image {
+        width: $image-width;
+    }
+
+    .image img {
+        width: 100%;
+        border: 1px solid $border-color;
+    }
+
+    .description {
+        margin-left: 20px;
+        width: 100% - $image-width;
+
+        p {
+            overflow-wrap: break-word;
+        }
+    }
+}
+
+.not-found {
+    color: red;
+    font-size: 2em;
+    padding-top: 200px;
+    text-align: center;
+}
