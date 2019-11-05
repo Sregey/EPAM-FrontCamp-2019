@@ -2,7 +2,7 @@ export default class NewsController {
     constructor() {
     }
 
-    /*private*/ buildNewsRequest(endpoint, params) {
+    /*private*/ async buildNewsRequest(endpoint, params) {
         if (!endpoint)
             throw new Error('Invalid endpoint');
     
@@ -17,7 +17,7 @@ export default class NewsController {
     }
     
     async getSources() {
-        const request = this.buildNewsRequest('sources');
+        const request = await this.buildNewsRequest('sources');
         const response = await fetch(request);
         if (response.ok) {
             const data = await response.json();
@@ -28,7 +28,7 @@ export default class NewsController {
     }
     
     async getNews(routeParams) {
-        const request = this.buildNewsRequest('top-headlines', {sources: routeParams.id});
+        const request = await this.buildNewsRequest('top-headlines', {sources: routeParams.id});
         const response = await fetch(request);
 
         let data = null;
