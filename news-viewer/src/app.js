@@ -15,8 +15,8 @@ const newsController = createLoggerProxy(new NewsController(), newsControllerMat
 const router = new Router();
 router.route(['/', '/sources'],
     () => newsController.getSources(),
-    (model) => NewsTemplate.getSourcesView(model));
+    (model) => NewsTemplate.instance.getSourcesView(model));
 
 router.route('/sources/{id}',
     (routeParams) => newsController.getNews(routeParams),
-    (model) => NewsTemplate.getNewsListView(model));
+    (model) => NewsTemplate.instance.getNewsListView(model));
