@@ -1,6 +1,7 @@
 let instance = Symbol();
 let singletonEnforcer = Symbol();
 
+// Family of algorithms for views generation.
 class NewsTemplate {
 
     constructor(enforcer) {

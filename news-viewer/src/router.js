@@ -47,6 +47,7 @@ export default class Router {
             let url = '/' + location.hash.slice(1);
             let route = this.resolveRoute(url);
             if (route && route.controller && route.template) {
+                // Use Strategy algorithms
                 const model = await route.controller(route.routeParams);
                 const view = route.template(model);
                 app.append(view);
