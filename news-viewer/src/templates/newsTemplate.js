@@ -1,5 +1,23 @@
-export default class NewsTemplate {
-    static getSourcesView(model) {
+let instance = Symbol();
+let singletonEnforcer = Symbol();
+
+// Family of algorithms for views generation.
+class NewsTemplate {
+
+    constructor(enforcer) {
+        if (enforcer !== singletonEnforcer)
+            throw 'Instantiation failed: use "instance" property instead of new.';
+    }
+
+    static get instance() {
+        if (!this[instance])
+            this[instance] = new NewsTemplate(singletonEnforcer);
+        return this[instance];
+    }
+
+    static set instance(value) { throw 'Can\'t change instance!' }
+
+    getSourcesView(model) {
         let sourcesContainer = document.createDiv('sources-container');
 
         for (let source of model.sources) {
@@ -11,7 +29,7 @@ export default class NewsTemplate {
         return sourcesContainer;
     }
 
-    static getNewsListView(model) {
+    getNewsListView(model) {
         let newsContainer = document.createDiv();
 
         for (let article of model.articles) {
@@ -41,8 +59,6 @@ export default class NewsTemplate {
 
         return newsContainer;
     }
-
-    static getNotFoundView() {
-        return document.createDiv(null, '404');
-    }
 }
+
+export default NewsTemplate;
