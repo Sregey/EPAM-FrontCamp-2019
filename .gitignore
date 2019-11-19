@@ -1,3 +1,7 @@
+# js packages
 */node_modules/
 */dist/
 */package-lock.json
+
+# mongo db
+/mongo-db/collections/
