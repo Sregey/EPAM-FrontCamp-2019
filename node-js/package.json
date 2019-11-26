@@ -1,0 +1,12 @@
+{
+    "name": "node-js-express-sample",
+    "description": "CRUD operations for news collection.",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "node src/app.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "winston": "^3.2.1"
+    }
+}
