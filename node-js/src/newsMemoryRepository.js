@@ -1,4 +1,4 @@
-function NewsRepository() {
+function NewsMemoryRepository() {
     const news = [
         {
             id: 1,
@@ -12,21 +12,21 @@ function NewsRepository() {
         }
     ];
 
-    this.getAll = () => {
+    this.getAll = async () => {
         return news;
     }
 
-    this.find = (id) => {
+    this.find = async (id) => {
         return news.find((elem) => elem.id == id);
     }
 
-    this.add = (newItem) => {
+    this.add = async (newItem) => {
         const newId = news[news.length - 1].id + 1;
         newItem.id = newId;
         news.push(newItem);
     }
 
-    this.addOrUpdate = (item) => {
+    this.addOrUpdate = async (item) => {
         const index = news.findIndex((elem) => elem.id == item.id);
         if (index !== -1) {
             news[index] = item;
@@ -35,7 +35,7 @@ function NewsRepository() {
         }
     }
 
-    this.remove = (id) => {
+    this.remove = async (id) => {
         const index = news.findIndex((elem) => elem.id == id);
         if (index !== -1) {
             news.splice(index, 1);
@@ -43,4 +43,4 @@ function NewsRepository() {
     }
 }
 
-module.exports = NewsRepository;
+module.exports = NewsMemoryRepository;

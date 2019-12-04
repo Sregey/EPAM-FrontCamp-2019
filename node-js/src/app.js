@@ -1,8 +1,9 @@
 const express = require('express');
+const passport = require('passport-local');
 const { createLogger, format, transports }  = require('winston');
-const NewsRepository = require('./newsRepository.js');
+const NewsRepositoriesFactory = require('./newsRepositoriesFactory.js');
 
-const newsRepository = new NewsRepository();
+NewsRepositoriesFactory.setMode('mongoose');
 
 const logger = createLogger({
     level: 'info',
@@ -27,34 +28,45 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/news', (req, res) => {
-    res.json(newsRepository.getAll());
+app.get('/news', async (req, res) => {
+    const newsRepository = NewsRepositoriesFactory.create();
+    const news = await newsRepository.getAll();
+    res.json(news);
+    newsRepository.dispose();
 });
 
-app.get('/news/:id', (req, res) => {
+app.get('/news/:id', async (req, res) => {
+    const newsRepository = NewsRepositoriesFactory.create();
     const newsId = req.params['id'];
-    const item = newsRepository.find(newsId);
+    const item = await newsRepository.find(newsId);
     if (item) {
         res.json(item);
     } else {
         res.sendStatus(404);
     }
+    newsRepository.dispose();
 });
 
-app.post('/news', (req, res) => {
-    newsRepository.add(req.body)
+app.post('/news', async (req, res) => {
+    const newsRepository = NewsRepositoriesFactory.create();
+    await newsRepository.add(req.body);
     res.redirect('/news');
+    newsRepository.dispose();
 });
 
-app.put('/news', (req, res) => {
-    newsRepository.addOrUpdate(req.body);
+app.put('/news', async (req, res) => {
+    const newsRepository = NewsRepositoriesFactory.create();
+    await newsRepository.addOrUpdate(req.body);
     res.redirect('/news');
+    newsRepository.dispose();
 });
 
-app.delete('/news/:id', (req, res) => {
+app.delete('/news/:id', async (req, res) => {
+    const newsRepository = NewsRepositoriesFactory.create();
     const newsId = req.params['id'];
-    newsRepository.remove(newsId);
+    await newsRepository.remove(newsId);
     res.redirect('/news');
+    newsRepository.dispose();
 });
 
 app.get('/test-error', (req, res) => {
