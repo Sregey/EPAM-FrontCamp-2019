@@ -1,0 +1,46 @@
+@import '../../../styles/constants.scss';
+
+$toggle-radius: 5px;
+$toggle-vertical-padding: 4px;
+$toggle-horizontal-padding: 15px;
+
+.toggle {
+    display: inline-flex;
+    text-transform: uppercase;
+
+    input {
+        display: none;
+    }
+
+    div {
+        padding-top: $toggle-vertical-padding;
+        padding-bottom: $toggle-vertical-padding;
+    }
+
+    .title {
+        margin-right: $toggle-horizontal-padding;
+    }
+
+    .left, .right {
+        padding-left: $toggle-horizontal-padding;
+        padding-right: $toggle-horizontal-padding;
+    }
+
+    .left {
+        border-radius: $toggle-radius 0 0 $toggle-radius;
+    }
+
+    .right {
+        border-radius: 0 $toggle-radius $toggle-radius 0;
+    }
+
+    input ~ .left,
+    input:checked ~ .right {
+        background-color: $primary-color;
+    }
+
+    input:checked ~ .left,
+    input ~ .right {
+        background-color: rgba(140, 140, 140, 0.5);
+    }
+}

@@ -1,0 +1,9 @@
+@import '../../styles/constants.scss';
+
+.svgIcon {
+    display: inline-flex;
+
+    svg {
+        fill: $primary-color;
+    }
+}

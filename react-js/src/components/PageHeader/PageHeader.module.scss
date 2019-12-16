@@ -1,0 +1,9 @@
+@import '../../styles/constants.scss';
+
+.pageHeader {
+    padding: 10px $page-side-indent 50px $page-side-indent;
+
+    .upperPanel {
+        margin-bottom: 30px;
+    }
+}

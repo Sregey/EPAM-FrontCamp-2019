@@ -1,0 +1,13 @@
+.movieTitle {
+    display: inline;
+    font-size: 2rem;
+}
+
+.movieTitle + div {
+    margin-left: 10px;
+}
+
+.movieTextInfo {
+    flex: 1;
+    margin-left: 30px;
+}

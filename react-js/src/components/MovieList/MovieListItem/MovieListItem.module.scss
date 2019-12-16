@@ -1,0 +1,21 @@
+@import '../../../styles/constants.scss';
+
+.movieListItem {
+    padding: 20px 10px;
+    font-size: 0.8rem;
+
+    .titleAndYear {
+        margin: 10px 0 5px 0;
+    }
+
+    .year {
+        font-size: 0.9em;
+        padding: 3px 5px;
+        border: 1px solid $primary-border-color;
+        border-radius: 4px;
+    }
+
+    .genre {
+        font-size: 0.9em;
+    }
+}

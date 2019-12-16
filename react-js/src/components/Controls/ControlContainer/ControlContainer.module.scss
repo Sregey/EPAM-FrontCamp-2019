@@ -1,0 +1,17 @@
+@import '../../../styles/constants.scss';
+
+.controlContainer {
+    input, label {
+        margin: 0 5px;
+    }
+
+    input:first-child,
+    label:first-child {
+        margin-left: 0;
+    }
+
+    input:last-child,
+    label:last-child {
+        margin-right: 0;
+    }
+}

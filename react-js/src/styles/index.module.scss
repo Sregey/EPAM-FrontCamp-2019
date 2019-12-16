@@ -1,0 +1,52 @@
+@import './constants.scss';
+
+html {
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: $primary-background-color;
+  color: $primary-font-color;
+}
+
+input.control {
+  line-height: 1.5rem;
+  padding: 4px 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+
+.twoSideItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.flexContainer {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.flex3 {
+  flex: 3;
+}
+
+.flex6 {
+  flex: 6;
+}
+
+.flex9 {
+  flex: 9;
+}

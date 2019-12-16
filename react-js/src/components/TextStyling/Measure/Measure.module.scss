@@ -1,0 +1,24 @@
+@import '../../../styles/constants.scss';
+
+.measure {
+    display: inline-flex;
+    align-items: flex-end;
+
+    .value {
+        font-size: 1.2em;
+        color: $primary-color;
+    }
+
+    .unit {
+        font-size: 60%;
+        color: #888888;
+    }
+
+    .value > .unit {
+        margin-left: 0.5em;
+    }
+}
+
+.measure + .measure {
+    margin-left: 1.5em;
+}
