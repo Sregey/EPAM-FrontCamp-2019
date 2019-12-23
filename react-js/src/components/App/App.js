@@ -1,21 +1,28 @@
 import React from 'react';
-import styles  from './App.module.scss';
-import PageHeader from '../PageHeader/PageHeader';
-import ResultPanel from '../ResultPanel/ResultPanel';
-import PageContent from '../PageContent/PageContent';
-import PageFooter from '../PageFooter/PageFooter';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from '../../redux/store'
+
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import SearchPage from '../Pages/SearchPage/SearchPage';
+import MovieDetailsPage from '../Pages/MovieDetailsPage/MovieDetailsPage';
+import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 
 function App() {
   return (
-    <div>
-      <ErrorBoundary>
-        <PageHeader />
-        <ResultPanel text="7 movies found"/>
-        <PageContent />
-        <PageFooter />
-      </ErrorBoundary>
-    </div>
+    <Provider store={store}>
+      <div>
+        <ErrorBoundary>
+          <Router>
+            <Switch>
+              <Route exact path={["/", "/search/:text?"]} component={SearchPage} />
+              <Route exact path="/film/:id" component={MovieDetailsPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </Router>
+        </ErrorBoundary>
+      </div>
+    </Provider>
   );
 }
 

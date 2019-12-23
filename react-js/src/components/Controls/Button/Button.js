@@ -7,7 +7,8 @@ function Button(props) {
     return (
         <input type="button" 
             className={`${indexStyles.control} ${styles.button} ${props.className}`}
-            value={props.text} />
+            value={props.text}
+            onClick={props.onClick} />
     );
 }
 

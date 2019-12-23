@@ -1,28 +1,41 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
+import {findMovies} from '../../redux/actions'
+
 import MovieListItem from './MovieListItem/MovieListItem';
+
 import styles from './MovieList.module.scss';
 
-function MovieList() {
-  let details = {
-    title: 'Blade Runner 2049',
-    genre: 'Action',
-    year: 2018,
-    mins: 120,
-    rating: 4.3,
-    imageUrl: "https://www.movieartarena.com/imgs/bladerunner2049ff.jpg",
-    description: 'Him rendered may attended concerns jennings reserved now. Sympathize did now preference unpleasing mrs few. Mrs for hour game room want are fond dare. For detract charmed add talking age. Shy resolution instrument unreserved man few. She did open find pain some out. If we landlord stanhill mr whatever pleasure supplied concerns so. Exquisite by it admitting cordially september newspaper an. Acceptance middletons am it favourable. It it oh happen lovers afraid. '
-  };
-  return (
-    <div className={styles.movieList}>
-        <MovieListItem details={details} />
-        <MovieListItem details={details} />
-        <MovieListItem details={details} />
-        <MovieListItem details={details} />
-        <MovieListItem details={details} />
-        <MovieListItem details={details} />
-        <MovieListItem details={details} />
-    </div>
-  );
+class MovieList extends React.Component {
+  render() {
+    const movies = this.props.movies;
+
+    let content;
+    if (!movies) {
+      content = null;
+    } else if (movies.length === 0) {
+      content = <div className={styles.noMoviesText}>No films found</div>;
+    } else {
+      content = movies.map(movie => <MovieListItem movie={movie} key={movie.id} />);
+    }
+
+    return (
+      <div className={styles.movieList}>
+        {content}
+      </div>
+    );
+  }
 }
 
-export default MovieList;
+function mapStateToProps(state) {
+  return {movies: state.movies.data}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    findMovies: (data) => dispatch(findMovies(data)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

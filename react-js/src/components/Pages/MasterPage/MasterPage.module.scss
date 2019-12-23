@@ -1,0 +1,27 @@
+@import '../../../styles/constants.scss';
+
+.masterPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.pageHeader {
+    padding: 10px $page-side-indent 50px $page-side-indent;
+
+    .upperPanel {
+        margin-bottom: 30px;
+    }
+}
+
+.pageContent {
+    flex: 1;
+    padding: 20px $page-side-indent;
+}
+
+.pageFooter {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: $secondary-background-color;
+}

@@ -7,6 +7,7 @@ $toggle-horizontal-padding: 15px;
 .toggle {
     display: inline-flex;
     text-transform: uppercase;
+    cursor: pointer;
 
     input {
         display: none;

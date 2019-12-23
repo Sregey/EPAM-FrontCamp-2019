@@ -1,9 +1,8 @@
 import React from 'react';
-import styles from './Poster.module.scss';
 
 function Poster(props) {
   return (
-    <img src={props.url} width={props.width} />
+    <img src={props.url} width={props.width} alt="Movie poster" />
   );
 }
 

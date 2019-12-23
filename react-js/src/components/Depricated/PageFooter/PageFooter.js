@@ -1,6 +1,6 @@
 import React from 'react';
 import styles  from './PageFooter.module.scss';
-import Logo from '../Logo/Logo';
+import Logo from '../../Logo/Logo';
 
 function PageFooter() {
     return (
