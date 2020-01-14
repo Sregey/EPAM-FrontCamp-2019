@@ -36,6 +36,7 @@ class MovieDetailsPage extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    debugger;
     if (this.state.needUpdate) {
       this.loadData();
       this.setState({needUpdate: false});

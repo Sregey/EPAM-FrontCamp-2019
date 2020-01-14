@@ -18,6 +18,7 @@ export default class MovieSevice {
         const response = await fetch(request);
         if (response.ok) {
             const data = await response.json();
+            console.log(data);
             return data;
         } else {
             throw new Error('Can\'t load data.');
