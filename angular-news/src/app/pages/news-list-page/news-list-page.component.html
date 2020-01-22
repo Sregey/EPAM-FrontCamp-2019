@@ -1,0 +1,21 @@
+<app-page-title [text]="source.value"></app-page-title>
+<div class="controls">
+  <select [formControl]="source" (change)="loadNews()">
+    <option *ngFor="let source of sources" value="{{source}}">{{source}}</option>
+  </select>
+  <div>
+    <input type="text" [formControl]="keyWords">
+    <input type="button" value="Filter" (click)="loadNews()">
+  </div>
+  <label>
+    <input type="checkbox" [formControl]="onlyLocal" (change)="loadNews()">
+    <span>Only created by me</span>
+  </label>
+  <input type="button" value="Add Article" routerLink="/news/create">
+</div>
+<div class="news-container">
+  <app-news-item *ngFor="let newsItem of news"
+    [newsItem]="newsItem">
+  </app-news-item>
+  <div (click)="loadMore()" class="load-more">Load More</div>
+</div>

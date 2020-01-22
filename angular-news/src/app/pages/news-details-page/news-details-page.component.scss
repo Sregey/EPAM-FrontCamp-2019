@@ -1,0 +1,48 @@
+.news {
+    display: flex;
+    padding: 20px;
+    margin: 20px auto;
+    border: 1px solid black;
+    width: 70%;
+
+    .title {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .body {
+        margin: 0 20px;
+        flex: 1;
+    }
+
+    .body > div + div {
+        margin-top: 20px;
+    }
+
+    .image {
+        width: 200px;
+    }
+
+    .image img {
+        width: 100%;
+        border: 1px solid gray;
+    }
+
+    .description {
+        margin-left: 20px;
+        flex: 1;
+
+        p {
+            overflow-wrap: break-word;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+
+        input + input {
+            margin-top: 15px;
+        }
+    }
+}

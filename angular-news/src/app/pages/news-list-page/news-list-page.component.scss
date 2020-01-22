@@ -1,0 +1,23 @@
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+
+    border: 1px solid black;
+}
+
+.news-container {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.load-more {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    background-color: #dddddd;
+    padding: 10px;
+    cursor: pointer;
+}

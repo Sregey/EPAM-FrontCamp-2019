@@ -1,0 +1,48 @@
+<app-page-title [text]="title"></app-page-title>
+<form [formGroup]="newsForm" (ngSubmit)="saveClicked()">
+    <div>
+        <input type="hidden" formControlName="id">
+        <label>
+            Heading:<br>
+            <input 
+              type="text"
+              formControlName="heading"
+              required
+              [ngClass]="{'invalid': heading.invalid && (heading.dirty || heading.touched)}">
+        </label>
+        <label>
+            Short description:<br>
+            <input type="text" formControlName="description">
+        </label>
+        <label>
+            Content:<br>
+            <textarea 
+              formControlName="content"
+              required
+              [ngClass]="{'invalid': content.invalid && (content.dirty || content.touched)}">
+            </textarea>
+        </label>
+    </div>
+    <div>
+        <label>
+            Image:<br>
+            <input type="text" formControlName="image">
+        </label>
+        <label>
+            Date:<br>
+            <input type="text" formControlName="date" value="{{date.value | date:'dd/MM/yyyy'}}">
+        </label>
+        <label>
+            Author:<br>
+            <input type="text" formControlName="author">
+        </label>
+        <label>
+            Source URL:<br>
+            <input type="text" formControlName="sourceUrl">
+        </label>
+        <div class="buttons">
+            <input type="submit" value="Save" [disabled]="!newsForm.valid">
+            <input type="button" value="Cancel" (click)="cancelClicked()">
+        </div>
+    </div>
+</form>

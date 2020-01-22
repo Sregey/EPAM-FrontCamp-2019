@@ -1,0 +1,13 @@
+$active-color: gray;
+
+:host {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px 30px;
+    border: 1px solid black;
+
+    .logo {
+        cursor: pointer;
+    }
+}
