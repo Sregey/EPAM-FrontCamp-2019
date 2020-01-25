@@ -7,16 +7,16 @@ import { CreateEditNewsPageComponent } from './pages/create-edit-news-page/creat
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
 const routes: Routes = [
-  {path: '', component: NewsListPageComponent},
-  {path: 'news/create', component: CreateEditNewsPageComponent, data: { title: 'Create' }},
-  {path: 'news/edit/:url', component: CreateEditNewsPageComponent},
-  {path: 'news/:url', component: NewsDetailsPageComponent},
-  {path: '404', component: NotFoundPageComponent},
-  {path: '**', redirectTo: '/404'} 
+    {path: '', component: NewsListPageComponent},
+    {path: 'news/create', component: CreateEditNewsPageComponent, data: { title: 'Create' }},
+    {path: 'news/edit/:url', component: CreateEditNewsPageComponent},
+    {path: 'news/:url', component: NewsDetailsPageComponent},
+    {path: '404', component: NotFoundPageComponent},
+    {path: '**', redirectTo: '/404'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

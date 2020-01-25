@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { News } from '../models/news'
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,24 +14,23 @@ import { CreateEditNewsPageComponent } from './pages/create-edit-news-page/creat
 import { PageTitleComponent } from './page-title/page-title.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    NewsListPageComponent,
-    NotFoundPageComponent,
-    NewsItemComponent,
-    NewsDetailsPageComponent,
-    CreateEditNewsPageComponent,
-    PageTitleComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    //News,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        NewsListPageComponent,
+        NotFoundPageComponent,
+        NewsItemComponent,
+        NewsDetailsPageComponent,
+        CreateEditNewsPageComponent,
+        PageTitleComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,23 +5,23 @@ import { News } from 'src/models/news';
 import { NewsService } from 'src/services/news-service';
 
 @Component({
-  selector: 'app-news-details-page',
-  templateUrl: './news-details-page.component.html',
-  styleUrls: ['./news-details-page.component.scss']
+    selector: 'app-news-details-page',
+    templateUrl: './news-details-page.component.html',
+    styleUrls: ['./news-details-page.component.scss']
 })
 export class NewsDetailsPageComponent implements OnInit {
-  news: News;
+    news: News;
 
-  constructor(
-      private route: ActivatedRoute,
-      private newsService: NewsService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private newsService: NewsService) { }
 
-  ngOnInit() {
-    const url = this.route.snapshot.params['url'];
-    this.news = this.newsService.getNewsBySourceUrl(url);
-  }
+    ngOnInit() {
+        const url = this.route.snapshot.params.url;
+        this.news = this.newsService.getNewsBySourceUrl(url);
+    }
 
-  deleteClicked(){
-    console.log('Deleted');
-  }
+    deleteClicked() {
+        console.log('Deleted');
+    }
 }
