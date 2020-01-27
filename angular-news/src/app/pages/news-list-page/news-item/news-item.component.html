@@ -2,15 +2,19 @@
     <div class="title">{{newsItem.title}}</div>
     <div class="body">
         <div class="image">
-            <img src="{{newsItem.imageUrl}}">
+            <img *ngIf="(newsItem.imageUrl !== null); else imageBlock" src="{{newsItem.imageUrl}}">
+            <ng-template #imageBlock><div class="no-image">No Image</div></ng-template>
         </div>
         <div class="description">
             <div>Date: {{newsItem.date | date:'dd/mm/yyyy h:mm a'}}</div>
-            <p>{{newsItem.description}}</p>
-            <p><a routerLink="/news/{{newsItem.sourceUrl}}">Read more ...</a></p>
+            <p>{{newsItem.description || newsItem.text}}</p>
+            <p>
+                <a *ngIf="newsItem.isLocal; else elseReadMore" routerLink="/news/{{newsItem.url}}">Read more...</a>
+                <ng-template #elseReadMore><a href="{{newsItem.url}}">Read more ...</a></ng-template>
+            </p>
         </div>
         <div *ngIf="newsItem.isLocal" class="buttons">
-            <input type="button" value="Edit" routerLink="/news/edit/{{newsItem.sourceUrl}}">
+            <input type="button" value="Edit" routerLink="/news/edit/{{newsItem.url}}">
             <input type="button" value="Delete" (click)="deleteClicked()">
         </div>
     </div>

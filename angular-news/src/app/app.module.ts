@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { createCustomElement } from '@angular/elements';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,8 +31,16 @@ import { PageTitleComponent } from './page-title/page-title.component';
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
+        HttpClientModule,
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [NewsItemComponent, PageTitleComponent],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
-export class AppModule { }
+export class AppModule {
+    constructor(injector: Injector) {
+        const pageTitleElement = createCustomElement(PageTitleComponent, {injector});
+        customElements.define('app-page-title', pageTitleElement);
+    }
+}

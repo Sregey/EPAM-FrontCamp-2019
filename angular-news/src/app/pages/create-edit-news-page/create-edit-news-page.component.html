@@ -38,7 +38,10 @@
         </label>
         <label>
             Source URL:<br>
-            <input type="text" formControlName="sourceUrl">
+            <input
+                type="text"
+                formControlName="sourceUrl"
+                [ngClass]="{'invalid': sourceUrl.invalid && (sourceUrl.dirty || sourceUrl.touched)}">
         </label>
         <div class="buttons">
             <input type="submit" value="Save" [disabled]="!newsForm.valid">

@@ -1,15 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { News } from 'src/models/news';
-import { NewsService } from 'src/services/news-service';
+import { NewsInMemoryService } from 'src/services/news-in-memory-service';
+import { Source } from 'src/models/source';
 
 @Component({
     selector: 'app-create-edit-news-page',
     templateUrl: './create-edit-news-page.component.html',
-    styleUrls: ['./create-edit-news-page.component.scss']
+    styleUrls: ['./create-edit-news-page.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateEditNewsPageComponent implements OnInit {
     newsForm: FormGroup;
@@ -17,12 +19,14 @@ export class CreateEditNewsPageComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private location: Location,
-        private newsService: NewsService) { }
+        private newsService: NewsInMemoryService) { }
 
     get heading() { return this.newsForm.get('heading'); }
     get content() { return this.newsForm.get('content'); }
     get date() { return this.newsForm.get('date'); }
+    get sourceUrl() { return this.newsForm.get('sourceUrl'); }
 
     ngOnInit() {
         const url = this.route.snapshot.params.url;
@@ -30,10 +34,11 @@ export class CreateEditNewsPageComponent implements OnInit {
         let news: News;
         if (url) {
             this.title = 'Edit';
-            news = this.newsService.getNewsBySourceUrl(url);
+            news = this.newsService.getNewsByUrl(url);
         } else {
             this.title = 'Create';
             news = new News();
+            news.date = new Date();
         }
 
         this.newsForm = new FormGroup({
@@ -44,7 +49,7 @@ export class CreateEditNewsPageComponent implements OnInit {
             image: new FormControl(news.imageUrl),
             date: new FormControl(news.date),
             author: new FormControl(news.author),
-            sourceUrl: new FormControl(news.sourceUrl, Validators.required),
+            sourceUrl: new FormControl(news.url, [Validators.required, Validators.pattern('[\\w,-]*')]),
         });
     }
 
@@ -53,6 +58,25 @@ export class CreateEditNewsPageComponent implements OnInit {
     }
 
     saveClicked() {
-        console.log(this.newsForm.value);
+        const formValue = this.newsForm.value;
+        const newsItem = new News({
+            id: formValue.id,
+            title: formValue.heading,
+            description: formValue.description,
+            text: formValue.content,
+            imageUrl: formValue.image,
+            date: formValue.date,
+            author: formValue.author,
+            url: formValue.sourceUrl,
+            source: Source.Local,
+        });
+
+        if (newsItem.id) {
+            this.newsService.update(newsItem);
+        } else {
+            this.newsService.add(newsItem);
+        }
+
+        this.router.navigate(['']);
     }
 }

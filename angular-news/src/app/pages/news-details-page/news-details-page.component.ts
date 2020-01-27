@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { News } from 'src/models/news';
-import { NewsService } from 'src/services/news-service';
+import { NewsInMemoryService } from 'src/services/news-in-memory-service';
 
 @Component({
     selector: 'app-news-details-page',
@@ -14,14 +14,16 @@ export class NewsDetailsPageComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private newsService: NewsService) { }
+        private router: Router,
+        private newsService: NewsInMemoryService) { }
 
     ngOnInit() {
         const url = this.route.snapshot.params.url;
-        this.news = this.newsService.getNewsBySourceUrl(url);
+        this.news = this.newsService.getNewsByUrl(url);
     }
 
     deleteClicked() {
-        console.log('Deleted');
+        this.newsService.delete(this.news.id);
+        this.router.navigate(['']);
     }
 }

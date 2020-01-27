@@ -1,16 +1,16 @@
-<app-page-title [text]="news.source"></app-page-title>
+<app-page-title [text]="news.source.name"></app-page-title>
 <div class="news">
     <div class="image">
         <img src="{{news.imageUrl}}">
     </div>
     <div class="body">
         <div class="title">{{news.title}}</div>
-        <div>{{news.description}}</div>
+        <div>{{news.text}}</div>
         <div>Date: {{news.date | date:'dd/MM/yyyy h:mm a'}}</div>
         <div>Author</div>
     </div>
     <div *ngIf="news.isLocal" class="buttons">
-        <input type="button" value="Edit" routerLink="/news/edit/{{news.sourceUrl}}">
+        <input type="button" value="Edit" routerLink="/news/edit/{{news.url}}">
         <input type="button" value="Delete" (click)="deleteClicked()">
     </div>
 </div>

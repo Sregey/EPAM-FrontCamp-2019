@@ -1,3 +1,6 @@
+import { NetworkHelper } from 'src/helpers/network-helper';
+import { Source } from './source';
+
 export class News {
     public id: number;
     public title: string;
@@ -6,11 +9,12 @@ export class News {
     public imageUrl: string;
     public date: Date;
     public author: string;
-    public isLocal: boolean;
-    public source: string;
-    public sourceUrl: string;
+    public source: Source;
+    public url: string;
 
     constructor(init?: Partial<News>) {
         Object.assign(this, init);
     }
+
+    get isLocal(): boolean { return !NetworkHelper.isValidUrl(this.url); }
 }
