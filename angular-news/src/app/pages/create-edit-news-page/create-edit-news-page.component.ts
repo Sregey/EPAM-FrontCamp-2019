@@ -77,6 +77,6 @@ export class CreateEditNewsPageComponent implements OnInit {
             this.newsService.add(newsItem);
         }
 
-        this.router.navigate(['']);
+        this.router.navigateByUrl('');
     }
 }

@@ -24,6 +24,6 @@ export class NewsDetailsPageComponent implements OnInit {
 
     deleteClicked() {
         this.newsService.delete(this.news.id);
-        this.router.navigate(['']);
+        this.router.navigateByUrl('');
     }
 }
